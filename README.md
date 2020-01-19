@@ -1,37 +1,71 @@
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/Alterson95/itmo-4155/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Docker Practice
 
-```markdown
-Syntax highlighted code block
+https://hub.docker.com/repository/docker/alterson95/itmo-41552/general -  администрирование БД и сезопасность вычислительных систем и сетей
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+## sum-of-two
+"""
+  Автор: Анисимов Дмитрий, группа №p42552
+  Ссылка на сайт-портфолио: https://alterson95.github.io/itmo-4155/
+  
+  Дополнительные комментарии по решению: -
 
-1. Numbered
-2. List
+"""
+import random
 
-**Bold** and _Italic_ and `Code` text
+class SumOfTwo():
+  def randNum():
+    return random.randint(0, 99)
 
-[Link](url) and ![Image](src)
-```
+  def find_sum(data, targetSum):
+    """'find_sum' function returns indexes of two numbers whose sum is equal to the number in the 'targetSum' variable"""
+    targetListOfIndexes = []
+    i = 0
+    while (i < len(data)-1):
+      if data[i] + data[i+1] == targetSum:
+        coupleOfIndex = (i, i+1)
+        targetListOfIndexes.append(coupleOfIndex)
+      i += 2  
+    if not targetListOfIndexes:
+      return 'coupleOfIndex is not found'
+    return targetListOfIndexes   
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+if __name__ == '__main__': 
+  cortegePi = (3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,7,6,7,4,4,5,9,2,9,9,8,0,6,7,9,8,2,2,6,5,3,5,4,1,5,3,5,8,9,0,6,5,3,5,3,2,3,8,4,7)
+  
+  """ Test #1 """
+  targetSum = 5
+  res1 = SumOfTwo.find_sum(cortegePi, targetSum)
+  print('targetSum=',targetSum)
+  print('res1',res1)
+  assert res1 == [(2, 3), (16, 17), (42, 43), (54, 55)], 'test #1 passed'
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Alterson95/itmo-4155/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+  """ Test #2 """
+  targetSum = 9
+  res2 = SumOfTwo.find_sum(cortegePi, targetSum)
+  print('\ntargetSum=',targetSum)
+  print('res2',res2)
+  assert res2 == [(24, 25), (48, 49)], 'test #2 passed'
 
-### Support or Contact
+  """ Test #3 """
+  targetSum = 27
+  res3 = SumOfTwo.find_sum(cortegePi, targetSum)
+  print('\ntargetSum=',targetSum)
+  print('res3',res3)
+  assert res3 == 'coupleOfIndex is not found', 'test #3 passed'
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+  """ Test #4 """
+  targetSum = 7
+  res4 = SumOfTwo.find_sum(cortegePi, targetSum)
+  print('\ntargetSum=',targetSum)
+  print('res4',res4)
+  assert res4 == [(2, 3), (42, 43), (54, 55)], 'test #4 failed'
+  
+  
+
